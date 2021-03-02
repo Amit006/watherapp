@@ -82,6 +82,8 @@ const  Weather = ({ config, forecast }) =>  {
       });
       /* eslint-enable no-param-reassign */
       const forecastList = forecastOfDayList;
+      console.log(' from wather : ', forecastList);
+    
       return (
         <div className={classes.ContentContainer}>
           <WeatherBannerTab
@@ -106,6 +108,7 @@ const  Weather = ({ config, forecast }) =>  {
               isSelected={forecastIdx === 1}
               unit={config.unit}
               locale={config.locale}
+             
             />
             <MiniWeatherCard
               onClick={() => setForecastIdx(2)}
@@ -113,6 +116,7 @@ const  Weather = ({ config, forecast }) =>  {
               isSelected={forecastIdx === 2}
               unit={config.unit}
               locale={config.locale}
+             
             />
             <MiniWeatherCard
               onClick={() => setForecastIdx(3)}
@@ -120,6 +124,7 @@ const  Weather = ({ config, forecast }) =>  {
               isSelected={forecastIdx === 3}
               unit={config.unit}
               locale={config.locale}
+             
             />
             <MiniWeatherCard
               onClick={() => setForecastIdx(4)}
@@ -127,6 +132,7 @@ const  Weather = ({ config, forecast }) =>  {
               isSelected={forecastIdx === 4}
               unit={config.unit}
               locale={config.locale}
+            
             />
           </div>
         </div>

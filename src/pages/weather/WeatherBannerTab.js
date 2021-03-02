@@ -20,9 +20,12 @@ const WeatherBannerTab = ({
   unit,
   onLocationClick,
 }) => {
+
+  console.log('forecastOfDay: ', forecastOfDay );
   const [tabIndex, setTabIndex] = useState(0);
 
   const renderTabPanel = (item, displayUnit) => {
+    
     return (
       <TabPanel key={`tp${item.dt}`}>
         <WeatherBanner forecastNow={item} unit={displayUnit} />

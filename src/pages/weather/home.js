@@ -86,6 +86,9 @@ const Home = () => {
               desc: data.weather[0].description,
               clouds: data.clouds.all,
               wind: data.wind.speed,
+              w_direction: data.wind?.direction || "SW",
+              pollen_count: data.wind?.pollen_count || 36,
+              p_date: data.dt_txt,
             }));
             setForecast(transformData);
             setError('');

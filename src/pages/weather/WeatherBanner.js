@@ -12,13 +12,23 @@ import iconCodeMapping from '../../WeatherIcon';
  * @param {string} unit the unit format for figures, only accepting 'metric' for now
  * @param {locale} locale locale for time formating
  */
+
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
 const WeatherBanner = ({ forecastNow, unit, locale }) => (
   <div>
-    <h5>
-      {`${moment.unix(forecastNow.dt).locale(locale).format('dddd a h:mm')}, ${
-        forecastNow.desc
-      }`}
-    </h5>
+    <span>
+      {`${moment(forecastNow.p_date).format('dddd MMM Do')}`}
+      {/* {forecastNow.p_date} */}
+      <br></br>
+    </span>
+    
+    <span> {` ${
+        capitalize(forecastNow.desc)
+      }`}s</span>
     <BannerContainer>
       <BannerIcon src={iconCodeMapping[forecastNow.icon]} />
       <Temperature>{Math.round(forecastNow.temp * 10) / 10}</Temperature>
@@ -29,19 +39,25 @@ const WeatherBanner = ({ forecastNow, unit, locale }) => (
       <div style={{ flex: '1' }} />
       <DetailContainer>
         <InfoText>
-          Clouds:
-          <b>{forecastNow.clouds}%</b>
+          Precipitation:{' '} 
+          {forecastNow.clouds}%
         </InfoText>
         <InfoText>
-          Humidity: <b>{forecastNow.humidity}%</b>
+          Humidity:{' '} {forecastNow.humidity}%
         </InfoText>
         <InfoText>
           Wind:{' '}
-          <b>
-            {forecastNow.wind}
-            {unit === 'metric' ? 'm/s' : 'mph'}
-          </b>
+          
+            {forecastNow.wind + " kph " + forecastNow.w_direction}
+            {/* {unit === 'metric' ? 'm/s' : 'mph'} */}
+          
         </InfoText>
+        Pollen Count:{' '}
+        
+          {forecastNow.pollen_count }
+        
+        <InfoText>
+          </InfoText>
       </DetailContainer>
     </BannerContainer>
   </div>
@@ -73,6 +89,7 @@ export default WeatherBanner;
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: row;
+
 `;
 
 const BannerIcon = styled.img`
@@ -83,7 +100,6 @@ const BannerIcon = styled.img`
 const Temperature = styled.div`
   font-size: 3rem;
   margin-left: 0.5rem;
-  font-weight: bold;
 `;
 
 const Unit = styled.div`
@@ -94,8 +110,10 @@ const Unit = styled.div`
 const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: x-large;
+  margin-right: 350px
 `;
 
 const InfoText = styled.div`
-  text-align: right;
+  text-align: left;
 `;

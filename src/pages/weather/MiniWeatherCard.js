@@ -40,16 +40,22 @@ const MiniWeatherCard = ({
         <Container onClick={onClick} isSelected={isSelected}>
           <Text>{moment.unix(first.dt).locale(locale).format('dddd')}</Text>
           <Icon src={iconCodeMapping[first.icon]} />
-          <Text>
+          <TextEContainer>
+          <TextE>
             {Math.round(tempMaxAndMin.max * 10) / 10}
             &deg;
-            {unit === 'metric' ? 'C' : 'F'}
-          </Text>
-          <Text>
+            {/* {unit === 'metric' ? 'C' : 'F'} */}
+        
+          </TextE>
+          <TextE>
             {Math.round(tempMaxAndMin.min * 10) / 10}
             &deg;
-            {unit === 'metric' ? 'C' : 'F'}
-          </Text>
+            {/* {unit === 'metric' ? 'C' : 'F'} */}
+          </TextE>
+          </TextEContainer>
+          <TextE>
+            Pollen{" "+ (first.pollen_count + Math.round(Math.random()*10) ) } 
+          </TextE>
         </Container>
       </Root>
     );
@@ -104,6 +110,19 @@ const Container = styled.div`
 const Text = styled.div`
   text-align: center;
   line-height: normal;
+  padding: 0.5rem 0rem;
+`;
+const TextE = styled.span`
+  text-align: center;
+  line-height: normal;
+  font-size:large;
+  padding: 0.5rem 0rem;
+  margin-right: 5px;
+`;
+const TextEContainer = styled.div`
+  text-align: center;
+  line-height: normal;
+  font-size:large;
   padding: 0.5rem 0rem;
 `;
 
